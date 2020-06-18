@@ -30,17 +30,17 @@ public class TodoDAO {
 		String sql = "SELECT id , title , task , limitdate , lastupdate , userid , label , td.status "
 				+ "FROM todo_list td LEFT JOIN status_list stts ON stts.status = td.status";
  
-		// �v���y�A�X�e�[�g�����g���擾���A���sSQL��n��
+		// プリペアステートメントを取得し、実行SQLを渡す
 		PreparedStatement statement = con.prepareStatement(sql);
- 
-		// SQL�����s���Ă��̌��ʂ��擾����B
+		
+		//　SQLを実行してその結果を取得する。
 		ResultSet rs = statement.executeQuery();
  
-		// �������ʂ̍s�����t�F�b�`���s���A�擾���ʂ�DTO�֊i�[����
+		// 検索結果の行数分フェッチを行い、取得結果をDTOへ格納する
 		while (rs.next()) {
 			Todo dto = new Todo();
  
-			// �N�G���[���ʂ�DTO�֊i�[(���炩���߃N�G���[���ʂ�DTO�̕ϐ����͈�v�����Ă���)
+			// クエリ―結果をDTOへ格納（あらかじめクエリ―結果とDTOの変数名は一致させている）
 			dto.setId(rs.getInt("id"));
 			dto.setTitle(rs.getString("title"));
 			dto.setTask(rs.getString("task"));
@@ -56,7 +56,7 @@ public class TodoDAO {
 	}
  
 	/**
-	 * �V�K�o�^�̉�ʂ�\������B�V�K�o�^�͋��DTO��JSP�֓n���B
+	 * 新規登録の画面を表示する。新規登録は空のDTOをJSPへ渡す。
 	 * 
 	 * @param id
 	 * @return
@@ -65,17 +65,17 @@ public class TodoDAO {
 	public Todo insert() {
  
 		Todo dto = new Todo();
-		// �V�K�o�^�ł��邱�Ƃ𔻕ʂ��邽��id=0�Ƃ��Ă���B
+		// 新規登録であることを判別するためid=0としている。
 		dto.setId(0);
  
 		return dto;
 	}
  
 	/**
-	 * �\������^�X�N�̔ԍ����w�肵�āA�^�X�N�ڍׂ�Ԃ��B
+	 * 表示するタスクの番号を指定して、タスク詳細を返す。
 	 * 
 	 * @param id
-	 *            �\���Ώۂ̃^�X�NID
+	 *            表示対象のタスクID
 	 * @return
 	 * @throws Exception
 	 */
@@ -85,16 +85,16 @@ public class TodoDAO {
 		String sql = "SELECT id , title , task , limitdate , lastupdate , userid , label , td.status "
 				+ "FROM todo_list td LEFT JOIN status_list stts ON stts.status = td.status where id = ?";
  
-		// �v���y�A�X�e�[�g�����g���擾���A���sSQL��n��
+		// プリペアステートメントを取得し、実行SQLを渡す
 		PreparedStatement statement = con.prepareStatement(sql);
 		statement.setInt(1, id);
  
-		// SQL�����s���Ă��̌��ʂ��擾����B
+		// SQLを実行してその結果を取得する。
 		ResultSet rs = statement.executeQuery();
  
-		// �������ʂ̍s�����t�F�b�`���s���A�擾���ʂ�DTO�֊i�[����
+		// 検索結果の行数分フェッチを行い、取得結果をDTOへ格納する
 		while (rs.next()) {
-			// �N�G���[���ʂ�DTO�֊i�[(���炩���߃N�G���[���ʂ�DTO�̕ϐ����͈�v�����Ă���)
+			// クエリ―結果をDTOへ格納（あらかじめクエリ―結果とDTOの変数名は一致させている）
 			dto.setId(rs.getInt("id"));
 			dto.setTitle(rs.getString("title"));
 			dto.setTask(rs.getString("task"));
@@ -108,25 +108,25 @@ public class TodoDAO {
 	}
  
 	/**
-	 * �폜�������s���B�w�肳�ꂽid�̃^�X�N���폜����B
+	 * 削除処理を行う。指定されたidのタスクを削除する。
 	 * 
 	 * @param id
-	 * @return �폜����
+	 * @return 削除件数
 	 * @throws Exception
 	 */
 	public int delete(int id) throws Exception {
 		String sql = "DELETE FROM todo_list where id = ?";
  
-		// SQL�����s���Ă��̌��ʂ��擾����B
+		// SQLを実行してその結果を取得する。
 		int result = 0;
 		try {
-			// �v���y�A�X�e�[�g�����g���擾���A���sSQL��n��
+			// プリペアステートメントを取得し、実行SQLを渡す
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setInt(1, id);
  
 			result = statement.executeUpdate();
  
-			// �R�~�b�g���s��
+			// コミットを行う
 			con.commit();
 		} catch (Exception e) {
 			con.rollback();
@@ -137,12 +137,12 @@ public class TodoDAO {
 	}
  
 	/**
-	 * �V�K�o�^�������s���B
-	 * �^�X�NID��AutoIncrement�̃L�[���ڂȂ̂ŁAINSERT����SQL�Ɋ܂߂Ȃ��Ă������I�ɍŐV��ID���o�^�����B
+	 * 新規登録処理を行う。
+	 * タスクIDはAutoIncrementのキー項目なので、INSERT文のSQLに含めなくても自動的に最新のIDが登録される。
 	 * 
 	 * @param dto
-	 *            ���͂��ꂽ�^�X�N���e�B
-	 * @return �ǉ����ꂽ����
+	 *            入力されたタスク内容。
+	 * @return 追加された件数
 	 * @throws Exception
 	 */
 	public int registerInsert(Todo dto) throws Exception {
@@ -151,7 +151,7 @@ public class TodoDAO {
 				+ "VALUES (?,?,?,now(),?,0)";
  
 		int result = 0;
-		// �v���y�A�X�e�[�g�����g���擾���A���sSQL��n��
+		// プリペアステートメントを取得し、実行SQLを渡す
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setString(1, dto.getTitle());
@@ -161,19 +161,18 @@ public class TodoDAO {
  
 			result = statement.executeUpdate();
  
-			// �R�~�b�g���s��
+			// コミットを行う
 			con.commit();
 		} catch (Exception e) {
-			// ���[���o�b�N���s���A�X���[������O��DAO����E�o����
-			con.rollback();
-			throw e;
+			// エラー詳細の表示
+			e.printStackTrace();
 		}
  
 		return result;
 	}
  
 	/**
-	 * �X�V�������s���B
+	 *　更新処理を行う。
 	 * 
 	 * @param dto
 	 * @return
@@ -182,7 +181,7 @@ public class TodoDAO {
 	public int registerUpdate(Todo dto) throws Exception {
 		String sql = "UPDATE todo_list SET title = ? , task = ? , limitdate = ? , lastupdate=now() , userid = ? , status = ? WHERE id = ?";
  
-		// �v���y�A�X�e�[�g�����g���擾���A���sSQL��n��
+		// プリペアステートメントを取得し、実行SQLを渡す
 		int result = 0;
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
@@ -195,11 +194,11 @@ public class TodoDAO {
  
 			result = statement.executeUpdate();
  
-			// �R�~�b�g���s��
+			// コミットを行う
 			con.commit();
 		} catch (Exception e) {
-			con.rollback();
-			throw e;
+			// エラー詳細の表示
+			e.printStackTrace();
 		}
  
 		return result;

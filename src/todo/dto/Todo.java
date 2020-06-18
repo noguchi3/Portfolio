@@ -5,35 +5,35 @@ import java.util.ArrayList;
 import java.util.List;
  
 /**
- * TODOŒŸõŒ‹‰Ê‚Ps’PˆÊ‚ÌValueObject
+ * TODOæ¤œç´¢çµæœ1è¡Œå˜ä½ã®ValueObject
  *
  */
 public class Todo {
-	/** TODO‚ÌID */
+	/** TODOã®ID */
 	private int id;
  
-	/** TODO‚Ìƒ^ƒCƒgƒ‹ */
+	/** TODOã®ã‚¿ã‚¤ãƒˆãƒ« */
 	private String title;
  
-	/** Ú×‚Èƒ^ƒXƒN‚Ì–¼‘O */
+	/** è©³ç´°ãªã‚¿ã‚¹ã‚¯ã®åå‰ */
 	private String task;
  
-	/** ƒ^ƒXƒN‚ÌŠúŒÀ */
+	/** ã‚¿ã‚¹ã‚¯ã®æœŸé™ */
 	private Timestamp limitdate;
  
-	/** ƒ^ƒXƒN‚ÌÅIXV“ú */
+	/** ã‚¿ã‚¹ã‚¯ã®æœ€çµ‚æ›´æ–°æ—¥æ™‚ */
 	private Timestamp lastupdate;
  
-	/** ƒ^ƒXƒN‚Ìƒ†[ƒUID */
+	/** ã‚¿ã‚¹ã‚¯ã®ãƒ¦ãƒ¼ã‚¶ID */
 	private String userid;
  
-	/** ƒ^ƒXƒN‚ÌƒXƒe[ƒ^ƒXƒR[ƒh */
+	/** ã‚¿ã‚¹ã‚¯ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰ */
 	private int status;
  
-	/** ƒ^ƒXƒN‚ÌƒXƒe[ƒ^ƒX•\¦ */
+	/** ã‚¿ã‚¹ã‚¯ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º */
 	private String label;
  
-	/** “o˜^‰æ–Ê‚Å“ü—Í‚³‚ê‚½ŠúŒÀ */
+	/** ç™»éŒ²ç”»é¢ã§å…¥åŠ›ã•ã‚ŒãŸæœŸé™ */
 	private String inputLimitdate;
  
 	public int getId() {
@@ -156,48 +156,48 @@ public class Todo {
 	}
  
 	/**
-	 * “ü—Íƒ`ƒFƒbƒN‚ğs‚¤B ‚à‚µ“ü—Íƒ`ƒFƒbƒNƒGƒ‰[‚ª‚ ‚Á‚½ê‡‚É‚Í©“®“I‚ÉƒGƒ‰[ƒƒbƒZ[ƒW‚ª’Ç‰Á‚³‚ê‚éB
+	 * å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚ã‚‚ã—å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆã«ã¯è‡ªå‹•çš„ã«ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè¿½åŠ ã•ã‚Œã‚‹ã€‚
 	 */
 	public boolean valueCheck() {
-		// ƒGƒ‰[ƒƒbƒZ[ƒW‚Ì‰Šú‰»
+		// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®åˆæœŸåŒ–
 		errorMessages = new ArrayList<String>();
  
 		// id
 		if (id < 0) {
-			errorMessages.add("•s³‚È“ü—Í‚ğŒŸo‚µ‚Ü‚µ‚½");
+			errorMessages.add("ä¸æ­£ãªå…¥åŠ›ã‚’æ¤œå‡ºã—ã¾ã—ãŸ");
 		}
  
 		// title
 		if (title == null || title.isEmpty()) {
-			errorMessages.add("“ü—Í‚µ‚½ƒ^ƒCƒgƒ‹‚ª‹ó‚Å‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸã‚¿ã‚¤ãƒˆãƒ«ãŒç©ºã§ã™");
 		} else if (title.length() > 256) {
-			errorMessages.add("“ü—Í‚µ‚½ƒ^ƒCƒgƒ‹‚ª’·‚·‚¬‚Ü‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸã‚¿ã‚¤ãƒˆãƒ«ãŒé•·ã™ãã¾ã™");
 		}
  
 		// task
 		if (task == null || task.isEmpty()) {
-			errorMessages.add("“ü—Í‚µ‚½ƒ^ƒXƒN‚ª‹ó‚Å‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸã‚¿ã‚¹ã‚¯ãŒç©ºã§ã™");
 		} else if (title.length() > 512) {
-			errorMessages.add("“ü—Í‚µ‚½ƒ^ƒXƒN‚ª’·‚·‚¬‚Ü‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸã‚¿ã‚¹ã‚¯ãŒé•·ã™ãã¾ã™");
 		}
  
 		// limitdate
 		if (inputLimitdate == null || inputLimitdate.isEmpty()) {
-			errorMessages.add("“ü—Í‚µ‚½ƒ^ƒXƒNŠúŒÀ‚ª‹ó‚Å‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸã‚¿ã‚¹ã‚¯æœŸé™ãŒç©ºã§ã™");
 		} else if (!inputLimitdate.matches("\\d{4}-\\d{2}-\\d{2}")) {
-			errorMessages.add("“ü—Í‚µ‚½ƒ^ƒXƒNŠúŒÀ‚ÌƒtƒH[ƒ}ƒbƒg‚ªˆá‚¢‚Ü‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸã‚¿ã‚¹ã‚¯æœŸé™ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒé•ã„ã¾ã™");
 		}
  
 		// userid
 		if (userid == null || userid.isEmpty()) {
-			errorMessages.add("“ü—Í‚µ‚½ƒ†[ƒU[ID‚ª‹ó‚Å‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸãƒ¦ãƒ¼ã‚¶ãƒ¼IDãŒç©ºã§ã™");
 		} else if (userid.length() > 64) {
-			errorMessages.add("“ü—Í‚µ‚½ƒ†[ƒU[ID‚ª’·‚·‚¬‚Ü‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸãƒ¦ãƒ¼ã‚¶ãƒ¼IDãŒé•·ã™ãã¾ã™");
 		}
  
 		// status
 		if (status < 0 || status > 3) {
-			errorMessages.add("“ü—Í‚µ‚½ƒXƒe[ƒ^ƒX‚Ì’l‚ª•s³‚Å‚·");
+			errorMessages.add("å…¥åŠ›ã—ãŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å€¤ãŒä¸æ­£ã§ã™");
 		}
  
 		return (errorMessages.size() == 0);

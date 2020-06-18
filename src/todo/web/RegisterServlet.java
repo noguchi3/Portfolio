@@ -13,7 +13,7 @@ import todo.dao.TodoDAO;
 import todo.dto.Todo;
  
 /**
- * “o˜^ˆ—‚ğs‚¤B
+ *ã€€ç™»éŒ²å‡¦ç†ã‚’è¡Œã†ã€‚
  */
 @WebServlet("/todo/register")
 public class RegisterServlet extends HttpServlet {
@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
  
-		// ƒŠƒNƒGƒXƒgƒpƒ‰ƒ[ƒ^‚ğó‚¯æ‚èADTO‚ÉŠi”[‚·‚é€”õ‚ğ‚·‚éB
+		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Šã€DTOã«æ ¼ç´ã™ã‚‹æº–å‚™ã‚’ã™ã‚‹ã€‚
 		int id = Integer.parseInt(request.getParameter("id"));
 		String title = request.getParameter("title");
 		String task = request.getParameter("task");
@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
 		String userid = request.getParameter("userid");
 		int status = Integer.parseInt(request.getParameter("status"));
  
-		// DTO‚ÖŠi”[‚·‚éB“o˜^‚³‚ê‚éŠúŒÀ(limit)‚ÍTodoƒNƒ‰ƒX‚Å‚ÍinputLimit‚É‚È‚éB
+		// DTOã¸æ ¼ç´ã™ã‚‹ã€‚ç™»éŒ²ã•ã‚Œã‚‹æœŸé™ï¼ˆlimitï¼‰ã¯Todoã‚¯ãƒ©ã‚¹ã§ã¯inputlimitã«ãªã‚‹ã€‚
 		Todo dto = new Todo();
 		dto.setId(id);
 		dto.setTitle(title);
@@ -43,49 +43,50 @@ public class RegisterServlet extends HttpServlet {
 		dto.setUserid(userid);
 		dto.setStatus(status);
  
-		// “ü—Íƒ`ƒFƒbƒN‚ğs‚¤B
+		// å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚
 		boolean checkResult = dto.valueCheck();
- 
-		// ‚à‚µ“ü—Íƒ`ƒFƒbƒNƒGƒ‰[‚ª‚ ‚Á‚½ê‡‚ÍAƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦‚µAÄ“ü—Í‚³‚¹‚é‚½‚ßŒ³‚ÌÚ×‰æ–Ê‚Ö–ß‚é
+		
+		// ã‚‚ã—å…¥åŠ›ãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆã¯ã€ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ã€å†å…¥åŠ›ã•ã›ã‚‹ãŸã‚å…ƒã®è©³ç´°ç”»é¢ã¸æˆ»ã‚‹
 		if (!checkResult) {
 			request.setAttribute("errorMessages", dto.getErrorMessages());
-			// ƒ^ƒXƒN‚PŒ‚Ìvo‚ğƒŠƒNƒGƒXƒg‘®«‚ÖƒoƒCƒ“ƒh
+			// ã‚¿ã‚¹ã‚¯1ä»¶ã®voã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆå±æ€§ã¸ãƒã‚¤ãƒ³ãƒ‰
 			request.setAttribute("dto", dto);
  
-			// Ú×‰æ–Ê‚ğ•\¦‚·‚é
+			// è©³ç´°ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹
 			RequestDispatcher rd = request.getRequestDispatcher("/detail.jsp");
 			rd.forward(request, response);
 			return;
 		}
- 
+		System.out.println("out of if");
 		String message = "";
-		try (TodoDAO dao = new TodoDAO()) {
-			// XV‚Ü‚½‚Í“o˜^ˆ—‚ğs‚¤
-			// id‚ª0‚Ì‚Æ‚«‚ÍV‹K“o˜^Aid>=1‚Ì‚Æ‚«‚ÍXV
+		try {
+			TodoDAO dao = new TodoDAO(); 
+			// æ›´æ–°ã¾ãŸã¯ç™»éŒ²å‡¦ç†ã‚’è¡Œã†ã€‚
+			// idãŒ0ã®ã¨ãã¯æ–°è¦ç™»éŒ²ã€id>=1ã®ã¨ãã¯æ›´æ–°
 			if (id == 0) {
 				dao.registerInsert(dto);
-				message = "ƒ^ƒXƒN‚ÌV‹K“o˜^ˆ—‚ªŠ®—¹‚µ‚Ü‚µ‚½B";
+				message = "ã‚¿ã‚¹ã‚¯ã®æ–°è¦å‡¦ç†ãŒå®Œäº†ã—ã¾ã—ãŸã€‚";
 			} else {
 				dao.registerUpdate(dto);
-				message = "ƒ^ƒXƒN[ " + id + " ]‚ÌXVˆ—‚ªŠ®—¹‚µ‚Ü‚µ‚½B";
+				message = "ã‚¿ã‚¹ã‚¯[ " + id + " ]ã®æ›´æ–°å‡¦ç†ãŒå®Œäº†ã—ã¾ã—ãŸã€‚";
 			}
 			setMessage(request, message);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
  
-		// “o˜^Š®—¹¨ˆê——‰æ–Ê‚ğ•\¦‚·‚é
+		// ç™»éŒ²å®Œäº†â†’ä¸€è¦§ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹
 		RequestDispatcher rd = request.getRequestDispatcher("/todo/search");
 		rd.forward(request, response);
 	}
  
 	/**
-	 * JSP‚Å•\¦‚·‚éƒƒbƒZ[ƒW‚ğİ’è‚·‚éB
+	 * JSPã§è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®šã™ã‚‹ã€‚
 	 *
 	 * @param request
-	 *            ƒT[ƒuƒŒƒbƒgƒŠƒNƒGƒXƒg
+	 *            ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	 * @param message
-	 *            ƒƒbƒZ[ƒW•¶š—ñ
+	 *            ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ–‡å­—åˆ—
 	 */
 	protected void setMessage(HttpServletRequest request, String message) {
 		request.setAttribute("message", message);

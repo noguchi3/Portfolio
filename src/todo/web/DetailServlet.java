@@ -13,7 +13,7 @@ import todo.dao.TodoDAO;
 import todo.dto.Todo;
  
 /**
- * ƒ^ƒXƒNÚ×‰æ–Ê‚ğ•\¦‚·‚éƒT[ƒuƒŒƒbƒgB
+ * ã‚¿ã‚¹ã‚¯è©³ç´°ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆã€‚
  */
 @WebServlet("/todo/detail")
 public class DetailServlet extends HttpServlet {
@@ -26,26 +26,27 @@ public class DetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
  
-		// ƒŠƒNƒGƒXƒgƒpƒ‰ƒ[ƒ^‚©‚ç‘I‘ğ‚µ‚½ƒ^ƒXƒNid‚ğæ“¾‚·‚é
+		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰é¸æŠã—ãŸã‚¿ã‚¹ã‚¯idã‚’å–å¾—ã™ã‚‹
 		String paramId = request.getParameter("id");
  
-		// String‚©‚çint‚Ö•ÏŠ·‚µAdao‚Åˆ—‚ğs‚¤BXV‘ÎÛ‚Ìƒ^ƒXƒN‚ğ‚PŒæ“¾‚·‚éB
+		// Stringã‹ã‚‰intã¸å¤‰æ›ã—ã€daoã§å‡¦ç†ã‚’è¡Œã†ã€‚æ›´æ–°å¯¾è±¡ã®ã‚¿ã‚¹ã‚¯ã‚’1ä»¶å–å¾—ã™ã‚‹ã€‚
 		Todo dto;
-		try (TodoDAO dao = new TodoDAO()){
-			// int‚Ö•ÏŠ·¦NumberFormatException‚ª”­¶‚·‚é‰Â”\«‚ ‚èBƒ`ƒFƒbƒN‘ÎÛB
+		try {
+			TodoDAO dao = new TodoDAO();
+			// intã¸å¤‰æ›â€»NumberFormatExeptionãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã‚ã‚Šã€‚ãƒã‚§ãƒƒã‚¯å¯¾è±¡ã€‚
 			int id = Integer.parseInt(paramId);
  
-			// ƒ^ƒXƒNÚ×Œ‹‰Ê‚ğæ“¾
+			// ã‚¿ã‚¹ã‚¯è©³ç´°çµæœã‚’å–å¾—
 			dto = dao.detail(id);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
  
-		// ƒ^ƒXƒN‚PŒ‚Ìvo‚ğƒŠƒNƒGƒXƒg‘®«‚ÖƒoƒCƒ“ƒh
+		// ã‚¿ã‚¹ã‚¯1ä»¶ã®voã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆå±æ€§ã¸ãƒã‚¤ãƒ³ãƒ‰
 		request.setAttribute("dto", dto);
  
-		// ‰æ–Ê‚ğ•Ô‚·
-		// ŒŸõˆê——‚ğ•\¦‚·‚é
+		// ç”»é¢ã‚’è¿”ã™ã€‚
+		// æ¤œç´¢ä¸€è¦§ã‚’è¡¨ç¤ºã™ã‚‹
 		RequestDispatcher rd = request.getRequestDispatcher("/detail.jsp");
 		rd.forward(request, response);
 	}

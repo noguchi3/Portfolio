@@ -16,24 +16,24 @@ public class DAO implements AutoCloseable {
 	}
  
 	/**
-	 * ƒf[ƒ^ƒx[ƒX‚Æ‚ÌÚ‘±‚ğæ“¾‚·‚éB ‚à‚µæ“¾‚µ‚Ä‚¢‚½ê‡‚É‚ÍŠù‘¶‚ÌÚ‘±‚ğ—˜—p‚µA æ“¾‚µ‚Ä‚¢‚È‚¢ê‡‚ÍV‚½‚ÉƒRƒ“ƒeƒi‚©‚çæ“¾‚·‚éB
+	 * ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã¨ã®æ¥ç¶šã‚’å–å¾—ã™ã‚‹ã€‚ã‚‚ã—å–å¾—ã—ã¦ã„ãŸå ´åˆã¯æ—¢å­˜ã®æ¥ç¶šã‚’åˆ©ç”¨ã—ã€å–å¾—ã—ã¦ã„ãªã„å ´åˆã¯æ–°ãŸã«ã‚³ãƒ³ãƒ†ãƒŠã‹ã‚‰å–å¾—ã™ã‚‹ã€‚
 	 *
 	 * @return
 	 * @throws Exception
 	 */
 	public Connection getConnection() throws Exception {
  
-		// NamingException, SQLException‚ªƒXƒ[‚³‚ê‚é
+		// NamingException, SQLExceptionãŒã‚¹ãƒ­ãƒ¼ã•ã‚Œã‚‹
 		try {
 			if (connection == null || connection.isClosed()) {
 				InitialContext initCtx = new InitialContext();
 				DataSource ds = (DataSource) initCtx.lookup("java:comp/env/jdbc/MariaDB");
-				// ƒf[ƒ^ƒx[ƒXÚ‘±‚ğæ“¾‚·‚é
+				// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹æ¥ç¶šã‚’å–å¾—ã™ã‚‹
 				connection = ds.getConnection();
 			}
 		} catch (NamingException | SQLException e) {
-			// ‚à‚µÚ‘±æ“¾‚Å—áŠO‚ªo‚½ê‡‚Íconnection=null‚É‚µA
-			// ”­¶‚µ‚½—áŠO‚Í‚»‚Ì‚Ü‚Ü‘—o‚·‚éB
+			// ã‚‚ã—æ¥ç¶šå–å¾—ã§ä¾‹å¤–ãŒå‡ºãŸå ´åˆã¯connection=nullã«ã—ã€
+			// ç™ºç”Ÿã—ãŸä¾‹å¤–ã¯ãã®ã¾ã¾é€å‡ºã™ã‚‹
 			e.printStackTrace();
 			connection = null;
 			throw e;
@@ -43,7 +43,7 @@ public class DAO implements AutoCloseable {
 	}
  
 	/**
-	 * Ú‘±‚ğ•Â‚¶‚éBŠmÀ‚ÉÚ‘±‚ğ‰ğ•ú‚·‚é‚½‚ßfinally‚Åconnection=null‚ğs‚¤B
+	 * æ¥ç¶šã‚’é–‰ã˜ã‚‹ã€‚ç¢ºå®Ÿã«æ¥ç¶šã‚’é–‹æ”¾ã™ã‚‹ãŸã‚finallyã§connection=nullã‚’è¡Œã†ã€‚
 	 */
 	public void closeConnection() {
 		try {
@@ -56,7 +56,7 @@ public class DAO implements AutoCloseable {
 	}
  
 	/**
-	 * PreparedStatement‚ğ•Ô‚·B
+	 * PreparedStatementã‚’è¿”ã™ã€‚
 	 *
 	 * @param sql
 	 * @return
@@ -67,7 +67,7 @@ public class DAO implements AutoCloseable {
 	}
  
 	/**
-	 * ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚ÌƒRƒ~ƒbƒg‚ğs‚¤B
+	 * ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚³ãƒŸãƒƒãƒˆã‚’è¡Œã†
 	 *
 	 * @throws SQLException
 	 */
@@ -76,7 +76,7 @@ public class DAO implements AutoCloseable {
 	}
  
 	/**
-	 * ƒgƒ‰ƒ“ƒUƒNƒVƒ‡ƒ“‚Ìƒ[ƒ‹ƒoƒbƒN‚ğs‚¤B
+	 * ãƒˆãƒ©ãƒ³ã‚¶ã‚¯ã‚·ãƒ§ãƒ³ã®ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¡Œã†ã€‚
 	 *
 	 * @throws SQLException
 	 */
@@ -85,7 +85,7 @@ public class DAO implements AutoCloseable {
 	}
  
 	/**
-	 * Ú‘±‚ğ•Â‚¶‚éB
+	 * æ¥ç¶šã‚’é–‰ã˜ã‚‹ã€‚
 	 */
 	public void close() {
  

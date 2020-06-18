@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import todo.dto.Todo;
  
 /**
- * V‹K“o˜^‚Ì“ü—Í‰æ–Ê‚ğ•\¦‚·‚éB
+ * æ–°è¦ç™»éŒ²ã®å…¥åŠ›ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹ã€‚
  */
 @WebServlet("/todo/input")
 public class InputServlet extends HttpServlet {
@@ -25,16 +25,16 @@ public class InputServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
  
-		// vo‚Ìì¬
+		// voã®ä½œæˆ
 		Todo dto = new Todo();
  
-		// V‹K“o˜^‚Å‚ ‚é‚±‚Æ‚ğ”»•Ê‚·‚é‚½‚ßid=0‚Æ‚µ‚Ä‚¢‚éB
+		// æ–°è¦ç™»éŒ²ã§ã‚ã‚‹ã“ã¨ã‚’åˆ¤åˆ¥ã™ã‚‹ãŸã‚id=0ã¨ã—ã¦ã„ã‚‹ã€‚
 		dto.setId(0);
  
-		// ƒ^ƒXƒN‚PŒ‚Ìvo‚ğƒŠƒNƒGƒXƒg‘®«‚ÖƒoƒCƒ“ƒh
+		// ã‚¿ã‚¹ã‚¯1ä»¶ã®voã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆå±æ€§ã¸ãƒã‚¤ãƒ³ãƒ‰
 		request.setAttribute("dto", dto);
  
-		// Ú×‰æ–Ê‚ğ•\¦‚·‚é
+		// è©³ç´°ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹
 		RequestDispatcher rd = request.getRequestDispatcher("/detail.jsp");
 		rd.forward(request, response);
 	}

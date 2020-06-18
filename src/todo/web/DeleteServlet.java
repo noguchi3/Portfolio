@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import todo.dao.TodoDAO;
  
 /**
- * íœˆ—‚ğs‚¤B
+ * å‰Šé™¤å‡¦ç†ã‚’è¡Œã†ã€‚
  */
 @WebServlet("/todo/delete")
 public class DeleteServlet extends HttpServlet {
@@ -24,34 +24,35 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// ƒŠƒNƒGƒXƒgƒpƒ‰ƒ[ƒ^‚©‚ç‘I‘ğ‚µ‚½ƒ^ƒXƒNid‚ğæ“¾‚·‚é
+		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰é¸æŠã—ãŸã‚¿ã‚¹ã‚¯idã‚’å–å¾—ã™ã‚‹ã€‚
 		String paramId = request.getParameter("id");
  
-		try(TodoDAO dao = new TodoDAO()) {
-			// int‚Ö•ÏŠ·¦NumberFormatException‚ª”­¶‚·‚é‰Â”\«‚ ‚èBƒ`ƒFƒbƒN‘ÎÛB
+		try {
+			TodoDAO dao = new TodoDAO();
+			// intã¸å¤‰æ›â€»NumberFormatExeptionãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã‚ã‚Šã€‚ãƒã‚§ãƒƒã‚¯å¯¾è±¡ã€‚
 			int id = Integer.parseInt(paramId);
  
-			// String‚©‚çint‚Ö•ÏŠ·‚µAdao‚Åˆ—‚ğs‚¤B‘ÎÛ‚Ìƒ^ƒXƒN‚ğ‚PŒíœ‚µA¬Œ÷‚·‚é‚Æ‚P‚ª•Ô‚³‚ê‚éB
+			// Stringã‹ã‚‰intã¸å¤‰æ›ã—ã€daoã§å‡¦ç†ã‚’è¡Œã†ã€‚å¯¾è±¡ã®ã‚¿ã‚¹ã‚¯ã‚’1ä»¶å‰Šé™¤ã—ã€æˆåŠŸã™ã‚‹ã¨ï¼‘ãŒè¿”ã•ã‚Œã‚‹ã€‚
 			int result = dao.delete(id);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
  
-		setMessage(request, "ƒ^ƒXƒN[ " + paramId + " ]‚Ìíœˆ—‚ªŠ®—¹‚µ‚Ü‚µ‚½B");
+		setMessage(request, "ã‚¿ã‚¹ã‚¯[ " + paramId + " ]ã®å‰Šé™¤å‡¦ç†ãŒå®Œäº†ã—ã¾ã—ãŸã€‚");
  
-		// ‰æ–Ê‚ğ•Ô‚·
-		// Š®—¹‰æ–Ê‚ğ•\¦‚·‚é
+		// ç”»é¢ã‚’è¿”ã™
+		// å®Œäº†ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹
 		RequestDispatcher rd = request.getRequestDispatcher("/todo/search");
 		rd.forward(request, response);
 	}
  
 	/**
-	 * JSP‚Å•\¦‚·‚éƒƒbƒZ[ƒW‚ğİ’è‚·‚éB
+	 * JSPã§è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¨­å®šã™ã‚‹ã€‚
 	 *
 	 * @param request
-	 *            ƒT[ƒuƒŒƒbƒgƒŠƒNƒGƒXƒg
+	 *            ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	 * @param message
-	 *            ƒƒbƒZ[ƒW•¶š—ñ
+	 *            ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ–‡å­—åˆ—
 	 */
 	protected void setMessage(HttpServletRequest request, String message) {
 		request.setAttribute("message", message);
