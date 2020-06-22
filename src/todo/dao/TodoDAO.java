@@ -129,8 +129,12 @@ public class TodoDAO {
 			// コミットを行う
 			con.commit();
 		} catch (Exception e) {
-			con.rollback();
-			throw e;
+			
+			// エラー詳細の表示
+						e.printStackTrace();
+			
+			//con.rollback();
+			//throw e;
 		}
  
 		return result;
