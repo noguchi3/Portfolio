@@ -152,7 +152,7 @@ public class TodoDAO {
 	public int registerInsert(Todo dto) throws Exception {
  
 		String sql = "INSERT INTO todo_list (title,task,limitdate,lastupdate,userid,status) "
-				+ "VALUES (?,?,?,now(),?,0)";
+				+ "VALUES (?,?,?,now(),?,?)";
  
 		int result = 0;
 		// プリペアステートメントを取得し、実行SQLを渡す
@@ -162,6 +162,7 @@ public class TodoDAO {
 			statement.setString(2, dto.getTask());
 			statement.setString(3, dto.getInputLimitdate());
 			statement.setString(4, dto.getUserid());
+			statement.setInt(5, dto.getStatus());
  
 			result = statement.executeUpdate();
  
