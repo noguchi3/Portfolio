@@ -49,14 +49,66 @@ window.onload = function() {
 	<tr>
 		<th>期限</th>
 		<td>
-		<c:choose>
-			<c:when test="${dto.inputLimitdate != null }">
-				<input type="text" name="limitdate" value="<c:out value="${dto.inputLimitdate}" />" size="10"/>
-			</c:when>
-			<c:otherwise>
-				<input type="text" name="limitdate" value="<fmt:formatDate value="${dto.limitdate }" pattern="yyyy-MM-dd"/>" size="10"/>
-			</c:otherwise>
-		</c:choose>
+			<select name="year">
+				<option value="2020">2020年</option>
+				<option value="2021">2021年</option>
+				<option value="2022">2022年</option>
+				<option value="2023">2023年</option>
+				<option value="2024">2024年</option>
+				<option value="2025">2025年</option>
+				<option value="2026">2026年</option>
+				<option value="2027">2027年</option>
+				<option value="2028">2028年</option>
+				<option value="2029">2029年</option>
+				<option value="2030">2030年</option>
+			</select>
+			<select name="month">
+				<option value="-01">1月</option>
+				<option value="-02">2月</option>
+				<option value="-03">3月</option>
+				<option value="-04">4月</option>
+				<option value="-05">5月</option>
+				<option value="-06">6月</option>
+				<option value="-07">7月</option>
+				<option value="-08">8月</option>
+				<option value="-09">9月</option>
+				<option value="-10">10月</option>
+				<option value="-11">11月</option>
+				<option value="-12">12月</option>
+			</select>
+			<select name="day">
+				<option value="-01">1日</option>
+				<option value="-02">2日</option>
+				<option value="-03">3日</option>
+				<option value="-04">4日</option>
+				<option value="-05">5日</option>
+				<option value="-06">6日</option>
+				<option value="-07">7日</option>
+				<option value="-08">8日</option>
+				<option value="-09">9日</option>
+				<option value="-10">10日</option>
+				<option value="-11">11日</option>
+				<option value="-12">12日</option>
+				<option value="-13">13日</option>
+				<option value="-14">14日</option>
+				<option value="-15">15日</option>
+				<option value="-16">16日</option>
+				<option value="-17">17日</option>
+				<option value="-18">18日</option>
+				<option value="-19">19日</option>
+				<option value="-20">20日</option>
+				<option value="-21">21日</option>
+				<option value="-22">22日</option>
+				<option value="-23">23日</option>
+				<option value="-24">24日</option>
+				<option value="-25">25日</option>
+				<option value="-26">26日</option>
+				<option value="-27">27日</option>
+				<option value="-28">28日</option>
+				<option value="-29">29日</option>
+				<option value="-30">30日</option>
+				<option value="-31">31日</option>
+			</select>
 		</td>
 	</tr>
 	<tr>

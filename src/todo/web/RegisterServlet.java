@@ -30,7 +30,20 @@ public class RegisterServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String title = request.getParameter("title");
 		String task = request.getParameter("task");
-		String inputLimitdate = request.getParameter("limitdate");
+		
+		
+		//ここから試作
+		
+		
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		String day = request.getParameter("day");
+		
+		String inputLimitdate =year+month+day;
+		System.out.println(inputLimitdate);
+		
+		//ここまで試作
+		
 		String userid = request.getParameter("userid");
 		int status = Integer.parseInt(request.getParameter("status"));
  

@@ -200,7 +200,7 @@ public class TodoDAO {
 			result = statement.executeUpdate();
  
 			// コミットを行う
-			con.commit();
+			//con.commit();
 		} catch (Exception e) {
 			// エラー詳細の表示
 			e.printStackTrace();

@@ -182,11 +182,11 @@ public class Todo {
 		}
  
 		// limitdate
-		if (inputLimitdate == null || inputLimitdate.isEmpty()) {
-			errorMessages.add("入力したタスク期限が空です");
-		} else if (!inputLimitdate.matches("\\d{4}-\\d{2}-\\d{2}")) {
-			errorMessages.add("入力したタスク期限のフォーマットが違います");
-		}
+		//if (inputLimitdate == null || inputLimitdate.isEmpty()) {
+			//errorMessages.add("入力したタスク期限が空です");
+		//} else if (!inputLimitdate.matches("\\d{4}-\\d{2}-\\d{2}")) {
+			//errorMessages.add("入力したタスク期限のフォーマットが違います");
+		//}
  
 		// userid
 		if (userid == null || userid.isEmpty()) {
